@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black; /* Set background color to black */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            animation: fadeIn 1s ease; /* Fade in animation for the body */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 350px;
+            padding: 25px 20px 30px 20px;
+            background: rgba(255, 255, 255, 0.1); /* Make the form background transparent */
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Darker shadow for better visibility */
+            text-align: center;
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(-20px); /* Start slightly above */
+            animation: slideIn 0.5s forwards, bounce 0.5s forwards; /* Slide in and bounce animation */
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .login-header img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2); /* Light shadow for logo */
+        }
+
+        h2 {
+            margin: 0 0 25px;
+            color: white; /* Change text color to white */
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
+
+        input[type="text"],
+        .password-wrapper input[type="password"] {
+            width: 100%;
+            height: 45px;
+            margin: 10px 0 15px;
+            padding: 0 40px 0 15px;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background 0.3s ease; /* Transition for background and border */
+            background: rgba(255, 255, 255, 0.2); /* Transparent input background */
+            color: white; /* Change input text color to white */
+        }
+
+        input[type="text"]:focus,
+        .password-wrapper input[type="password"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            fill: #999;
+            width: 24px;
+            height: 24px;
+            transition: fill 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            fill: #4CAF50;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            height: 45px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for background and scale */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        .message {
+            color: red;
+            margin-top: 15px;
+            min-height: 20px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa; /* Change text color to a lighter shade */
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 400px) {
+            .login-container {
+                max-width: 100%;
+                padding: 20px 15px;
+                border-radius: 12px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 10px 0 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container" role="main">
+        <div class="login-header">
+            <img src="c:/Users/FITZ/Downloads/received_1096389795630436.jpeg" alt="Logo" />
+            <h2>Login</h2>
+        </div>
+        <form id="loginForm" onsubmit="return loginUser  (event)" aria-label="Login form">
+            <input type="text" id="username" placeholder="Username" required aria-required="true"
+                aria-label="Enter Username" />
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Password" required aria-required="true"
+                    aria-label="Enter Password" />
+                <svg tabindex="0" role="button" aria-label="Toggle password visibility" class="toggle-password"
+                    id="togglePassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" />
+                    <circle cx="12" cy="12" r="2.5" />
+                </svg>
+            </div>
+            <input type="submit" value="Login" aria-label="Submit Login" />
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showSignup()" role="button" tabindex="0">Sign up</a></p>
+        <div class="message" id="message" role="alert" aria-live="polite"></div>
+    </div>
+
+    <script>
+        if (!localStorage.getItem('admin')) localStorage.setItem('admin', '1234');
+
+        function showSignup() {
+            const username = prompt("Enter a username:");
+            const password = prompt("Enter a password:");
+            if (username && password) {
+                if (localStorage.getItem(username)) {
+                    alert("Username already exists. Please choose another one.");
+                    return;
+                }
+                localStorage.setItem(username, password);
+                alert("Account created successfully!");
+            } else alert("Username and password cannot be empty.");
+        }
+
+        function loginUser  (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const storedPassword = localStorage.getItem(username);
+            const messageElem = document.getElementById('message');
+
+            if (storedPassword === password) {
+                messageElem.style.color = 'green';
+                messageElem.textContent = "Login successful!";
+                setTimeout(() => window.location.href = 'home.html', 1000);
+            } else {
+                messageElem.style.color = 'red';
+                messageElem.textContent = "Invalid username or password.";
+            }
+            return false;
+        }
+
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            togglePassword.style.fill = type === 'text' ? '#4CAF50' : '#999';
+        });
+
+        togglePassword.addEventListener('keydown', e => {
+            if (['Enter', ' ', 'Spacebar'].includes(e.key)) {
+                e.preventDefault();
+                togglePassword.click();
+            }
+        });
+    </script>
+</body>
+</html>
